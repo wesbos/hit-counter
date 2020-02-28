@@ -1,6 +1,8 @@
 const data = require('@begin/data');
 const Jimp = require('jimp');
 
+const { format } = Intl.NumberFormat();
+
 async function initializeData(req) {
   // check if this is the first time for this domain
   const query = {
@@ -22,11 +24,11 @@ exports.handler = async function todos(req) {
     prop: 'hits',
   });
 
-  const image = new Jimp(300, 200, 0xffffffff);
+  const image = new Jimp(1000, 200, 0xffffffff);
   image.background(0xffffffff);
 
   const font = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK);
-  image.print(font, 0, 0, hits);
+  image.print(font, 0, 0, format(hits));
   image.autocrop();
   const buff = await image.getBufferAsync(Jimp.MIME_PNG);
 
