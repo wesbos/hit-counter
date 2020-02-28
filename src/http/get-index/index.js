@@ -5,7 +5,7 @@ async function initializeData(req) {
   // check if this is the first time for this domain
   const query = {
     table: 'sites',
-    key: req.headers.host,
+    key: req.headers.Host,
     hits: 0,
   };
   const existing = await data.get(query);
