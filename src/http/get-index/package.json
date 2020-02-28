@@ -1,8 +1,8 @@
 {
-  "name": "begin-app-post-todos",
+  "name": "begin-app-get-index",
   "dependencies": {
     "@architect/functions": "latest",
     "@begin/data": "latest",
-    "nanoid": "^2.1.6"
+    "text2png": "^2.3.0"
   }
 }

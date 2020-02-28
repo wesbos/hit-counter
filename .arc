@@ -7,6 +7,7 @@ bird-51a
 get /todos
 post /todos
 post /todos/delete
+get /
 
 @tables
 data
