@@ -19,7 +19,7 @@ exports.handler = async function todos(req) {
   await initializeData(req);
   const { hits } = await data.incr({
     table: 'sites',
-    key: req.headers.host,
+    key: req.headers.Host,
     prop: 'hits',
   });
 
