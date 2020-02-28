@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg version="1.2" viewBox="0 0 1000 1000" width="1000" height="1000" xmlns="http://www.w3.org/2000/svg" >
+ <text id="t1" y="50" >MY UGLY TEXsdfsdfT</text>
+ <style>
+  text {
+    background: red;
+  }
+ </style>
+ <script type="application/ecmascript">
+    var width=500;
+    var height=500;
+    var textNode = document.getElementById("t1");
+    var bb = textNode.getBBox();
+    var widthTransform = width / bb.width;
+    var heightTransform = height / bb.height;
+    var value = widthTransform;
+    textNode.setAttribute("transform", "scale("+value+")");
+ </script>
+</svg>

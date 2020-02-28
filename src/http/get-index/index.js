@@ -1,5 +1,5 @@
-const text2png = require('text2png');
 const data = require('@begin/data');
+const Jimp = require('jimp');
 
 async function initializeData(req) {
   // check if this is the first time for this domain
@@ -21,13 +21,14 @@ exports.handler = async function todos(req) {
     key: req.headers.host,
     prop: 'hits',
   });
-  const buffer = text2png(`${hits}`, {
-    color: 'white',
-    backgroundColor: 'black',
-    padding: 20,
-    borderWidth: 2,
-    borderColor: 'white',
-  });
+
+  const image = new Jimp(300, 200, 0xffffffff);
+  image.background(0xffffffff);
+
+  const font = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK);
+  image.print(font, 0, 0, hits);
+  image.autocrop();
+  const buff = await image.getBufferAsync(Jimp.MIME_PNG);
 
   return {
     statusCode: 201,
@@ -37,6 +38,6 @@ exports.handler = async function todos(req) {
       'cache-control':
         'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0',
     },
-    body: buffer.toString('base64'),
+    body: buff.toString('base64'),
   };
 };
