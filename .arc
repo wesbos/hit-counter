@@ -4,7 +4,6 @@ bird-51a
 @static
 
 @http
-post /todos/delete
 get /
 
 @tables
