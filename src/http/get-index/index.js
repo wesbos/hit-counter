@@ -15,7 +15,6 @@ async function initializeData(req) {
 }
 
 exports.handler = async function todos(req) {
-  console.log(req);
   await initializeData(req);
   const { hits } = await data.incr({
     table: 'sites',
