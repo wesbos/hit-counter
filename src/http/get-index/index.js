@@ -16,7 +16,18 @@ async function initializeData(req) {
   }
 }
 
+function isExtraneousRequest(req) {
+  return (
+      req.path.endsWith("favicon.ico")
+  );
+}
+
 exports.handler = async function todos(req) {
+
+  if(isExtraneousRequest(req)) {
+    return { statusCode: 404 };
+  }
+
   await initializeData(req);
   const { hits } = await data.incr({
     table: 'sites',
