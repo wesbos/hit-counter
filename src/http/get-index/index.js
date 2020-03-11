@@ -7,7 +7,7 @@ async function initializeData(req) {
   // check if this is the first time for this domain
   const query = {
     table: 'sites',
-    key: req.headers.Host || req.headers.host,
+    key: req.headers.Host,
     hits: 0,
   };
   const existing = await data.get(query);
@@ -20,7 +20,7 @@ exports.handler = async function todos(req) {
   await initializeData(req);
   const { hits } = await data.incr({
     table: 'sites',
-    key: req.headers.Host || req.headers.host,
+    key: req.headers.Host,
     prop: 'hits',
   });
 
